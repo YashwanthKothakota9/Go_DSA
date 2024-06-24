@@ -11,12 +11,13 @@ func isSymmetric(root *TreeNode[int]) bool {
 	queue := &Queue{}
 	queue.Enqueue(root.Left)
 	queue.Enqueue(root.Right)
-	//queue.Print()
+	fmt.Println(queue.String())
 
 	for queue.Size() > 0 {
+		fmt.Println(queue.String())
 		// Dequeue two elements from the queue and store in 'left' and 'right'.
-		left := queue.Dequeue().(*TreeNode[int])
-		right := queue.Dequeue().(*TreeNode[int])
+		left := queue.Dequeue()
+		right := queue.Dequeue()
 
 		// If both elements are nil, move to the next iteration.
 		if left == nil && right == nil {
@@ -40,7 +41,6 @@ func isSymmetric(root *TreeNode[int]) bool {
 		queue.Enqueue(left.Right)
 		queue.Enqueue(right.Left)
 
-		//queue.Print()
 	}
 
 	// The queue is empty now, indicating that all the elements are matched,
